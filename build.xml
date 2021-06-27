@@ -16,11 +16,6 @@
         </javac>
     </target>
 
-<target name="doc">
-    <javadoc packagenames="package1" sourcepath="src" destdir="help">
-    </javadoc>
-</target>
-
     <target name="jar">
         <mkdir dir="build/jar"/>
         <jar destfile="build/jar/HelloWorld.jar" basedir="build/classes">
@@ -40,7 +35,10 @@
         <java jar="build/jar/HelloWorld.jar" fork="true"/>
     </target>
 
-
+<target name="doc">
+    <javadoc packagenames="package1" sourcepath="src" destdir="help">
+    </javadoc>
+</target>
 </project>
 
 
