@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="java-antproject" default="run">
+    <target name="clean">
+        <delete dir="build"/>
+        <delete dir="help"/>
+    </target>
+
+    <target name="get">
+        <get src="https://ant.apache.org/" dest="help/index.html"/>
+    </target>
+
+    <target name="compile">
+        <mkdir dir="build/classes"/>
+        <javac includeantruntime="false" srcdir="./src" destdir="build/classes">
+        </javac>
+    </target>
+
+<target name="doc">
+    <javadoc packagenames="package1" sourcepath="src" destdir="help">
+    </javadoc>
+</target>
+
+    <target name="jar">
+        <mkdir dir="build/jar"/>
+        <jar destfile="build/jar/HelloWorld.jar" basedir="build/classes">
+            <manifest>
+                <attribute name="Main-Class" value="package1.HelloWorld"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <junit printsummary="yes" fork="yes" haltonfailure="yes">
+        <formatter type="plain"/>
+        <test name="HelloWorldTest"/>
+    </junit>
+
+
+    <target name="run">
+        <java jar="build/jar/HelloWorld.jar" fork="true"/>
+    </target>
+
+
+</project>
+
+
